@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Canvas Example</title>
+    <style>
+        canvas {
+            border: 1px solid #d3d3d3;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="300" height="200"></canvas>
+
+    <script>
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+
+        // Draw a rectangle
+        ctx.fillStyle = "red";
+        ctx.fillRect(20, 20, 150, 100);
+
+        // Draw a circle
+        ctx.beginPath();
+        ctx.arc(100, 100, 50, 0, 2 * Math.PI);
+        ctx.fillStyle = "green";
+        ctx.fill();
+        ctx.closePath();
+
+        // Draw a line
+        ctx.beginPath();
+        ctx.moveTo(200, 50);
+        ctx.lineTo(200, 150);
+        ctx.strokeStyle = "blue";
+        ctx.stroke();
+    </script>
+</body>
+
+</html>

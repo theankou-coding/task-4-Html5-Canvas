@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Drawing App</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #2c2c2c;
+        }
+
+        canvas {
+            border: 2px solid #fff;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="drawingCanvas" width="800" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let drawing = false;
+
+        // Start drawing when the user presses the mouse down
+        canvas.addEventListener('mousedown', (e) => {
+            drawing = true;
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX, e.offsetY); // Move to the starting point of the stroke
+        });
+
+        // Draw as the user moves the mouse
+        canvas.addEventListener('mousemove', (e) => {
+            if (drawing) {
+                ctx.lineTo(e.offsetX, e.offsetY); // Draw a line to the new coordinates
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        });
+
+        // Stop drawing when the user releases the mouse button
+        canvas.addEventListener('mouseup', () => {
+            drawing = false;
+            ctx.closePath();
+        });
+
+        // Stop drawing if the mouse leaves the canvas area
+        canvas.addEventListener('mouseleave', () => {
+            drawing = false;
+        });
+    </script>
+
+</body>
+
+</html>
